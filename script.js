@@ -1,18 +1,26 @@
 //your code here
-let maparr=touristSpots.map(func);
+let touristSpots = ['The Virupaksha Temple', 'Victoria Memorial', 'Tajmahal'];
 
-function func(element,index,list) {
-	let temp= element.split(" ");
-	if(temp[0]=='a'|| temp[0]=='an'||temp[0]=='the')
-	{
-		for(let i=1;i<temp.length;i++)
-			{
-				temp[i-1]=temp[i];
-			}
-	}
-	return temp.join(" ");
+let maparr=touristSpots.map(func1);
+
+function func1(elem) {
+	let temp=elem.split(" ");
+	let articles=['a','an','the'];
+	let newArr=temp.filter(func2)
+	function func2(word)
+		{
+			return !(articles.inlcudes(word.toLoweCase()));
+		}
+	return newArr.join(" ");
 }
 
 maparr.sort();
 
-console.log(maparr);
+const ul = document.getElementById("band");
+for(let i=0;i<maparr.length;i++)
+	{
+		let htmlelem=document.createElement("li");
+		htmlelem.innerText=maparr[i];
+		ul.append(htmlelem);
+	}
+
